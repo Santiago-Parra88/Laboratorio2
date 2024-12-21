@@ -1,0 +1,16 @@
+services:
+  az-agent:
+    build:
+      context: .
+      dockerfile: ${ARCH}/Dockerfile
+    container_name: azure-agent
+    volumes:
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+        read_only: true
+    environment:
+      - AZP_TOKEN=${AZP_TOKEN}
+      - AZP_URL=${AZP_URL}
+      - AZP_POOL=${AZP_POOL}
+      - AZP_AGENT_NAME=${AZP_AGENT_NAME}
